@@ -12,27 +12,28 @@ Waiter is a Swift library that provides convenient global functions for asynchro
 import Waiter
 
 class Counter {
-	var value: Int = 0
+    var value: Int = 0
 }
 
 let counter = Counter()
 
 Task {
-	// Asynchronously increment the counter after a delay
-	await Task.sleep(1)
-	counter.value += 1
+    // Asynchronously increment the counter after a delay
+    await Task.sleep(1)
+    counter.value += 1
 }
 
 do {
-	// Wait for the counter value to become equal to 1
-	let finalValue = try await wait(
-		on: counter,
-		for: \.value,
-		expecting: 1
-	)
-	print("Counter value: \(finalValue)") // Output: Counter value: 1
+    // Wait for the counter value to become equal to 1
+    let finalValue = try await wait(
+        on: counter,
+        for: \.value,
+        expecting: 1
+    )
+
+    print("Counter value: \(finalValue)") // Output: Counter value: 1
 } catch {
-	print("Timeout Error: \(error)")
+    print("Timeout Error: \(error)")
 }
 ```
 
@@ -43,11 +44,11 @@ To wait for a value of a specified key path to satisfy a condition, use the glob
 ```swift
 @discardableResult
 public func wait<Object: AnyObject, Value>(
-	on object: Object,
-	for keyPath: KeyPath<Object, Value>,
-	duration: TimeInterval = 3,
-	interval: TimeInterval = 0.1,
-	expecting: @escaping (Value) -> Bool
+    on object: Object,
+    for keyPath: KeyPath<Object, Value>,
+    duration: TimeInterval = 3,
+    interval: TimeInterval = 0.1,
+    expecting: @escaping (Value) -> Bool
 ) async throws -> Value
 ```
 
@@ -92,16 +93,16 @@ import XCTest
 @testable import YourProject
 
 final class YourTests: XCTestCase, Waitable {
-	func testYourFunctionality() async throws {
-		// Test setup
-		
-		// Perform asynchronous operations
-		
-		// Wait for a value to satisfy a condition
-		try await wait(on: object, for: keyPath, expecting: expectedValue)
-		
-		// Assertions and test verification
-	}
+    func testYourFunctionality() async throws {
+        // Test setup
+
+        // Perform asynchronous operations
+
+        // Wait for a value to satisfy a condition
+        try await wait(on: object, for: keyPath, expecting: expectedValue)
+
+        // Assertions and test verification
+    }
 }
 ```
 
