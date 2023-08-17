@@ -26,7 +26,6 @@ jobs:
             -destination 'generic/platform=iOS';
           $(xcrun --find docc) process-archive \
             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/Waiter.doccarchive \
-            --hosting-base-path Waiter \
             --output-path docs;
           echo "<script>window.location.href +=
           \"/documentation/waiter\"</script>" > docs/index.html;
