@@ -65,11 +65,11 @@ To wait for a value of a specified key path to become equal to a specific value,
 ```swift
 @discardableResult
 public func wait<Object: AnyObject, Value: Equatable>(
-	on object: Object,
-	for keyPath: KeyPath<Object, Value>,
-	duration: TimeInterval = 3,
-	interval: TimeInterval = 0.1,
-	expecting: Value
+    on object: Object,
+    for keyPath: KeyPath<Object, Value>,
+    duration: TimeInterval = 3,
+    interval: TimeInterval = 0.1,
+    expecting: Value
 ) async throws -> Value
 ```
 
