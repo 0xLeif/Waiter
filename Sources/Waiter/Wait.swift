@@ -110,7 +110,7 @@ func wait<Object: AnyObject, Value>(
     }
 
     try await Task.sleep(
-        nanoseconds: UInt64(1_000_000_000 * abs(duration))
+        nanoseconds: UInt64(1_000_000_000 * abs(interval))
     )
 
     return try await wait(
