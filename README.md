@@ -6,7 +6,7 @@ Waiter is a Swift library that provides convenient global functions for asynchro
 
 ## Usage
 
-### Example
+### Wait Example
 
 ```swift
 import Waiter
@@ -30,6 +30,33 @@ do {
         for: \.value,
         expecting: 1
     )
+
+    print("Counter value: \(finalValue)") // Output: Counter value: 1
+} catch {
+    print("Timeout Error: \(error)")
+}
+```
+
+### Waitable Example
+
+```swift
+import Waiter
+
+class Counter: Waitable {
+    var value: Int = 0
+}
+
+let counter = Counter()
+
+Task {
+    // Asynchronously increment the counter after a delay
+    await Task.sleep(1)
+    counter.value += 1
+}
+
+do {
+    // Wait for the counter value to become equal to 1
+    let finalValue = try await counter.wait(for: \.value, expecting: 1)
 
     print("Counter value: \(finalValue)") // Output: Counter value: 1
 } catch {
