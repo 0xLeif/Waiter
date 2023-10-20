@@ -27,11 +27,11 @@ public enum WaitError: LocalizedError {
  Waits asynchronously for the value of the specified key path to satisfy the provided condition.
 
  - Parameters:
-     - `on`: The object to wait on.
-     - `for`: The key path of the value to wait for.
-     - `duration`: The maximum amount of time to wait for the value to change.
-     - `interval`: The interval at which to check the value.
-     - `expecting`: The closure that determines whether the value satisfies the condition.
+     - on: The object to wait on.
+     - for: The key path of the value to wait for.
+     - duration: The maximum amount of time to wait for the value to change.
+     - interval: The interval at which to check the value.
+     - expecting: The closure that determines whether the value satisfies the condition.
 
  - Returns: The value of the key path once it satisfies the condition.
 
@@ -59,11 +59,11 @@ public func wait<Object: AnyObject, Value>(
  Waits asynchronously for the value of the specified key path to become equal to the provided value.
 
  - Parameters:
-     - `on`: The object to wait on.
-     - `for`: The key path of the value to wait for.
-     - `duration`: The maximum amount of time to wait for the value to change.
-     - `interval`: The interval at which to check the value.
-     - `expecting`: The expected value to wait for.
+     - on: The object to wait on.
+     - for: The key path of the value to wait for.
+     - duration: The maximum amount of time to wait for the value to change.
+     - interval: The interval at which to check the value.
+     - expecting: The expected value to wait for.
 
  - Returns: The value of the key path once it becomes equal to the provided value.
 
