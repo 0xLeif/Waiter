@@ -1,5 +1,10 @@
 # Waiter
 
+[![macOS Build](https://img.shields.io/github/actions/workflow/status/0xLeif/Waiter/macOS.yml?label=macOS&branch=main)](https://github.com/0xLeif/Waiter/actions/workflows/macOS.yml)
+[![Ubuntu Build](https://img.shields.io/github/actions/workflow/status/0xLeif/Waiter/ubuntu.yml?label=Ubuntu&branch=main)](https://github.com/0xLeif/Waiter/actions/workflows/ubuntu.yml)
+[![License](https://img.shields.io/github/license/0xLeif/Waiter)](https://github.com/0xLeif/Waiter/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/v/release/0xLeif/Waiter)](https://github.com/0xLeif/Waiter/releases)
+
 ⌛ *Asynchronous Waiting Made Easy*
 
 Waiter is a Swift library that provides convenient global functions for asynchronous waiting. It allows you to wait for values to satisfy specific conditions or become equal to expected values. Additionally, Waiter includes a Waitable protocol that you can adopt in your own types to enable waiting functionality.

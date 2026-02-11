@@ -1,7 +1,7 @@
 import XCTest
 @testable import Waiter
 
-final class WaiterTests: XCTestCase, Waitable {
+final class WaiterTests: XCTestCase, Waitable, @unchecked Sendable {
     var testWaitValue: Void = ()
 
     func testWaitTimeout() async {
@@ -24,7 +24,7 @@ final class WaiterTests: XCTestCase, Waitable {
     }
 
     func testWaiter() async throws {
-        class Value {
+        class Value: @unchecked Sendable {
             var count = 0
         }
 
@@ -57,7 +57,7 @@ final class WaiterTests: XCTestCase, Waitable {
     }
 
     func testWaitable() async throws {
-        class Value: Waitable {
+        class Value: Waitable, @unchecked Sendable {
             var count = 0
         }
 
