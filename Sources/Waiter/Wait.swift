@@ -43,7 +43,7 @@ public func wait<Object: AnyObject, Value>(
     for keyPath: KeyPath<Object, Value>,
     duration: TimeInterval = 3,
     interval: TimeInterval = 0.1,
-    expecting: @escaping (Value) -> Bool
+    expecting: @Sendable @escaping (Value) -> Bool
 ) async throws -> Value {
     try await wait(
         on: object,
@@ -70,7 +70,7 @@ public func wait<Object: AnyObject, Value>(
  - Throws: An error if the wait times out.
  */
 @discardableResult
-public func wait<Object: AnyObject, Value: Equatable>(
+public func wait<Object: AnyObject, Value: Equatable & Sendable>(
     on object: Object,
     for keyPath: KeyPath<Object, Value>,
     duration: TimeInterval = 3,
@@ -97,7 +97,7 @@ func wait<Object: AnyObject, Value>(
     interation: UInt,
     duration: TimeInterval,
     interval: TimeInterval,
-    expecting: @escaping (Value) -> Bool
+    expecting: @Sendable @escaping (Value) -> Bool
 ) async throws -> Value {
     guard Double(interation) * interval < duration else {
         throw WaitError.timeout(duration)

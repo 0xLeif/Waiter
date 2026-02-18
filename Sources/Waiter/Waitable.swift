@@ -28,7 +28,7 @@ public protocol Waitable {
         for keyPath: KeyPath<Object, Value>,
         duration: TimeInterval,
         interval: TimeInterval,
-        expecting: @escaping (Value) -> Bool
+        expecting: @Sendable @escaping (Value) -> Bool
     ) async throws -> Value
 
     /**
@@ -46,7 +46,7 @@ public protocol Waitable {
      - Throws: An error if the wait times out.
      */
     @discardableResult
-    func wait<Object: AnyObject, Value: Equatable>(
+    func wait<Object: AnyObject, Value: Equatable & Sendable>(
         on object: Object,
         for keyPath: KeyPath<Object, Value>,
         duration: TimeInterval,
@@ -76,7 +76,7 @@ extension Waitable {
         for keyPath: KeyPath<Object, Value>,
         duration: TimeInterval = 3,
         interval: TimeInterval = 0.1,
-        expecting: @escaping (Value) -> Bool
+        expecting: @Sendable @escaping (Value) -> Bool
     ) async throws -> Value {
         try await Waiter.wait(
             on: object,
@@ -102,7 +102,7 @@ extension Waitable {
      - Throws: An error if the wait times out.
      */
     @discardableResult
-    public func wait<Object: AnyObject, Value: Equatable>(
+    public func wait<Object: AnyObject, Value: Equatable & Sendable>(
         on object: Object,
         for keyPath: KeyPath<Object, Value>,
         duration: TimeInterval = 3,
@@ -138,7 +138,7 @@ extension Waitable where Self: AnyObject {
         for keyPath: KeyPath<Self, Value>,
         duration: TimeInterval = 3,
         interval: TimeInterval = 0.1,
-        expecting: @escaping (Value) -> Bool
+        expecting: @Sendable @escaping (Value) -> Bool
     ) async throws -> Value {
         try await Waiter.wait(
             on: self,
@@ -163,7 +163,7 @@ extension Waitable where Self: AnyObject {
      - Throws: An error if the wait times out.
      */
     @discardableResult
-    public func wait<Value: Equatable>(
+    public func wait<Value: Equatable & Sendable>(
         for keyPath: KeyPath<Self, Value>,
         duration: TimeInterval = 3,
         interval: TimeInterval = 0.1,
