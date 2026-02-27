@@ -123,11 +123,11 @@ final class WaiterTests: XCTestCase, Waitable, @unchecked Sendable {
             )
             XCTFail("Expected timeout error")
         } catch {
-            XCTAssertTrue(error is WaitError)
-            XCTAssertEqual(
-                error.localizedDescription,
-                WaitError.timeout(0.3).localizedDescription
-            )
+            if let waitError = error as? WaitError, case .timeout(let duration) = waitError {
+                XCTAssertEqual(duration, 0.3)
+            } else {
+                XCTFail("Expected WaitError.timeout(0.3), but got \(error)")
+            }
         }
     }
 
@@ -147,7 +147,11 @@ final class WaiterTests: XCTestCase, Waitable, @unchecked Sendable {
             )
             XCTFail("Expected timeout error")
         } catch {
-            XCTAssertTrue(error is WaitError)
+            if let waitError = error as? WaitError, case .timeout(let duration) = waitError {
+                XCTAssertEqual(duration, 0.3)
+            } else {
+                XCTFail("Expected WaitError.timeout(0.3), but got \(error)")
+            }
         }
     }
 
@@ -206,10 +210,11 @@ final class WaiterTests: XCTestCase, Waitable, @unchecked Sendable {
             XCTFail("Expected timeout error")
         } catch {
             // Should timeout at abs(-0.3) = 0.3 seconds
-            XCTAssertEqual(
-                error.localizedDescription,
-                WaitError.timeout(0.3).localizedDescription
-            )
+            if let waitError = error as? WaitError, case .timeout(let duration) = waitError {
+                XCTAssertEqual(duration, 0.3)
+            } else {
+                XCTFail("Expected WaitError.timeout(0.3), but got \(error)")
+            }
         }
     }
 
@@ -326,7 +331,11 @@ final class WaiterTests: XCTestCase, Waitable, @unchecked Sendable {
             )
             XCTFail("Expected timeout error")
         } catch {
-            XCTAssertTrue(error is WaitError)
+            if let waitError = error as? WaitError, case .timeout(let duration) = waitError {
+                XCTAssertEqual(duration, 0.3)
+            } else {
+                XCTFail("Expected WaitError.timeout(0.3), but got \(error)")
+            }
         }
     }
 
